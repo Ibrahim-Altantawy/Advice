@@ -51,6 +51,7 @@ export default function Feed() {
           />
         </form>
         {searchText ? (
+          
           <PromptCardList data={searchValue} handleTaqClick={handleTaqClick} />
         ) : (
           <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
