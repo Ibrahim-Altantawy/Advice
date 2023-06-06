@@ -1,0 +1,9 @@
+
+/* Nav Component */
+.logo_text {
+    @apply max-sm:hidden font-satoshi font-semibold text-lg bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent tracking-wide ;
+    
+  }
+  
+  
+  
