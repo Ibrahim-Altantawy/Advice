@@ -1,6 +1,5 @@
 import "@components/Form/FormStyle.css";
 import Link from "next/link";
-
 export default function Form({ type, post, setPost, submit, handleSubmit }) {
   return (
     <>
@@ -33,7 +32,6 @@ export default function Form({ type, post, setPost, submit, handleSubmit }) {
             </label>
             <input  id="promptTag" placeholder="#tag" className="form_input"
             value={post.tag}
-
             onChange={(e)=>{
                 setPost({...post,tag:e.target.value})
             }}
@@ -47,9 +45,6 @@ export default function Form({ type, post, setPost, submit, handleSubmit }) {
                 className="px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white">
                 {submit?`${type}....`:type}
                 </button>
-
-
-
             </div>
         </form>
       </section>

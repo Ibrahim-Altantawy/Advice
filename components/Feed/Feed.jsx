@@ -2,25 +2,8 @@
 
 import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
-import PromptCard from "@components/PromptCard/PromptCard.jsx";
+import PromptCardList from "@components/PromptCard/PromptCardList";
 
-const PromptCardList = ({ data, handleTaqClick }) => {
-  return (
-    <>
-      <div className="mt-16 prompt_layout">
-        {data.map((post) => {
-          return (
-            <PromptCard
-              key={post._id}
-              post={post}
-              handleTaqClick={handleTaqClick}
-            />
-          );
-        })}
-      </div>
-    </>
-  );
-};
 /**=========main function componant======== */
 export default function Feed() {
   const [searchText, setSearchText] = useState("");
@@ -29,7 +12,7 @@ export default function Feed() {
 
   /**----handle type in search inpute----------- */
   const filterPrompts = (searchtext) => {
-    const regex = new RegExp(searchtext, "i"); 
+    const regex = new RegExp(searchtext, "i");
     return posts.filter(
       (item) =>
         regex.test(item.userId.userName) ||
@@ -39,15 +22,15 @@ export default function Feed() {
   };
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
-    setSearchValue( filterPrompts(e.target.value))
+    setSearchValue(filterPrompts(e.target.value));
   };
- /**------------------------------ */
- /**--handle search by click on tag--- */
- const handleTaqClick =(e)=>{
+  /**------------------------------ */
+  /**--handle search by click on tag--- */
+  const handleTaqClick = (e) => {
     setSearchText(e);
-    setSearchValue( filterPrompts(e))
- }
- /**-------------- */
+    setSearchValue(filterPrompts(e));
+  };
+  /**-------------- */
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("api/prompt/GetAll");
@@ -70,7 +53,11 @@ export default function Feed() {
             onChange={handleSearchChange}
           />
         </form>
-        {searchText?(<PromptCardList data={searchValue} handleTaqClick={() => {}} />):(<PromptCardList data={posts} handleTaqClick={handleTaqClick} />)}
+        {searchText ? (
+          <PromptCardList data={searchValue} handleTaqClick={() => {}} />
+        ) : (
+          <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
+        )}
       </section>
     </>
   );

@@ -1,10 +1,5 @@
 
-'use client'
-
 import PromptCard from '@components/PromptCard/PromptCard'
-
-
-
 export default function ProfileComponent({name,data,desc,handleEdit,handleDelet }) {
   return (
     <div className='w-full  '>
@@ -19,14 +14,9 @@ export default function ProfileComponent({name,data,desc,handleEdit,handleDelet 
       post={post} 
       handleEdit={()=>handleEdit&& handleEdit(post)}
       handleDelet={()=>handleDelet&& handleDelet(post)}
-
       /> })}
 
       </div>
-      
-      
-         
-     
     </div>
   )
 }

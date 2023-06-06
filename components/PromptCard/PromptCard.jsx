@@ -3,15 +3,13 @@ import Image from "next/image";
 import SimpleCopy from './SimpleCopy';
 import SimpleEditPrompt from './simpleEditPrompt';
 
-
+/**--------main function----- */
 export default function PromptCard({
   post,
   handleTaqClick,
   handleEdit,
   handleDelet,
 }) {
-
-
   return (
     <div className=" prompt_card">
       <div className=" flex justify-between items-start gap-5">
