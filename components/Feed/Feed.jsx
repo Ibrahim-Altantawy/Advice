@@ -1,6 +1,6 @@
 "use client";
 
-import "@components/Feed/Feed.css";
+import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
 import PromptCard from "@components/PromptCard/PromptCard.jsx";
 
