@@ -1,12 +1,10 @@
 "use client";
-
 import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
 import PromptCardList from "@components/PromptCard/PromptCardList";
-
 /**=========main function componant======== */
 export default function Feed() {
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState();
   const [searchValue, setSearchValue] = useState([]);
   const [posts, setPosts] = useState([]);
 
@@ -39,7 +37,6 @@ export default function Feed() {
     };
     fetchData();
   }, []);
-
   return (
     <>
       <section className="feed">
@@ -54,7 +51,7 @@ export default function Feed() {
           />
         </form>
         {searchText ? (
-          <PromptCardList data={searchValue} handleTaqClick={() => {}} />
+          <PromptCardList data={searchValue} handleTaqClick={handleTaqClick} />
         ) : (
           <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
         )}
