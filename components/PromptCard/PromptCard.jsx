@@ -1,3 +1,4 @@
+
 import '@components/PromptCard/promptCard.css'
 import Image from "next/image";
 import SimpleCopy from './SimpleCopy';

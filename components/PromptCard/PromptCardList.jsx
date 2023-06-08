@@ -1,5 +1,6 @@
-import PromptCard from "./PromptCard";
+"use client";
 
+import PromptCard from "./PromptCard";
 export default function PromptCardList({ data, handleTaqClick }) {
   return (
     <>
