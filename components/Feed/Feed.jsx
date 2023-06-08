@@ -2,6 +2,7 @@
 import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
 import PromptCardList from "@components/PromptCard/PromptCardList";
+import PromptCard from "@components/PromptCard/PromptCard";
 /**=========main function componant======== */
 export default function Feed() {
   const [searchText, setSearchText] = useState();
@@ -52,10 +53,31 @@ export default function Feed() {
           />
         </form>
         {searchText ? (
-          
-          <PromptCardList data={searchValue} handleTaqClick={handleTaqClick} />
+           <div className="mt-16 prompt_layout">
+           {searchValue.map((post) => {
+             return (
+               <PromptCard
+                 key={post._id}
+                 post={post}
+                 handleTaqClick={handleTaqClick}
+               />
+             );
+           })}
+         </div>
+          // <PromptCardList data={searchValue} handleTaqClick={handleTaqClick} />
         ) : (
-          <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
+          <div className="mt-16 prompt_layout">
+          {posts.map((post) => {
+            return (
+              <PromptCard
+                key={post._id}
+                post={post}
+                handleTaqClick={handleTaqClick}
+              />
+            );
+          })}
+        </div>
+          // <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
         )}
       </section>
     </>
