@@ -1,3 +1,4 @@
+"use client";
 
 import '@components/PromptCard/promptCard.css'
 import Image from "next/image";
