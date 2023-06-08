@@ -1,7 +1,6 @@
 "use client";
 import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
-import PromptCardList from "@components/PromptCard/PromptCardList";
 import PromptCard from "@components/PromptCard/PromptCard";
 /**=========main function componant======== */
 export default function Feed() {
@@ -64,7 +63,6 @@ export default function Feed() {
              );
            })}
          </div>
-          // <PromptCardList data={searchValue} handleTaqClick={handleTaqClick} />
         ) : (
           <div className="mt-16 prompt_layout">
           {posts.map((post) => {
@@ -77,7 +75,6 @@ export default function Feed() {
             );
           })}
         </div>
-          // <PromptCardList data={posts} handleTaqClick={handleTaqClick} />
         )}
       </section>
     </>
