@@ -29,6 +29,7 @@ export default function UpdataPrompt() {
     } catch (error) {
       console.log(error);
     }
+  router.prefetch()
   };
   useEffect(() => {
     const getPromptDetails = async () => {
