@@ -3,11 +3,10 @@ import "@components/Feed/feed.css";
 import { useState, useEffect } from "react";
 import PromptCard from "@components/PromptCard/PromptCard";
 /**=========main function componant======== */
-export default function Feed() {
-  const [searchText, setSearchText] = useState();
+export default function Feed({data}) {
+  const [searchText, setSearchText] = useState('');
   const [searchValue, setSearchValue] = useState([]);
   const [posts, setPosts] = useState([]);
-
   /**----handle type in search inpute----------- */
   const filterPrompts = (searchtext) => {
     const regex = new RegExp(searchtext, "i");
@@ -30,14 +29,12 @@ export default function Feed() {
   };
   /**-------------- */
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("api/prompt/GetAll",{ next: { revalidate: 0 },cache: 'no-store'  });
-      const data = await response.json();
+    if(!posts){
+      console.log(posts)
+    }else{
       setPosts(data);
-      
-    };
-    fetchData();
-  }, []);
+    }
+   },[]);
   return (
     <>
       <section className="feed">
@@ -65,7 +62,7 @@ export default function Feed() {
          </div>
         ) : (
           <div className="mt-16 prompt_layout">
-          {posts.map((post) => {
+          {posts?.map((post) => {
             return (
               <PromptCard
                 key={post._id}

@@ -1,7 +1,15 @@
-'use client'
 import Feed from "@components/Feed/Feed";
-
-export default function Home() {
+export default async function Home() {
+  let data;
+  try {
+    const response = await fetch(
+      `${process.env.NEXTAUTH_URL_INTERNAL}/api/prompt/GetAll`,
+      { cache: "no-store" }
+    );
+    data = await response.json();
+  } catch (error) {
+    console.log(error);
+  }
   return (
     <>
       <section className=" w-full flex-center flex-col">
@@ -18,7 +26,7 @@ export default function Home() {
           ex corporis eaque!
         </p>
       </section>
-      <Feed/>
+      <Feed data={data} />
     </>
   );
 }

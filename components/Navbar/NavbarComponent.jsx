@@ -10,7 +10,7 @@ export default function NavbarComponent() {
   return (
     <>
       <nav className=" flex-between w-full mb-16 pt-3 navBar">
-        <Link href='/' className="flex-between ">
+        <Link href='/'  className="flex-between " prefetch={true}>
         <Image 
         src='/assets/image/logo.jpg'
         width={30}

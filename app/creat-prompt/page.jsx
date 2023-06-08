@@ -1,7 +1,7 @@
 "use client";
 import Form from "@components/Form/Form";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter  } from "next/navigation";
 import { useState } from "react";
 export default function CreatPrompt() {
   const router = useRouter();
@@ -24,6 +24,7 @@ export default function CreatPrompt() {
     });
     if (response.ok) {
       router.push("/");
+      router.refresh('/')
     }
   };
   return (

@@ -19,7 +19,6 @@ export default function ProfilePage() {
           alert('deleting sucesses')
           setMyPrompt(myPrompt.filter((e)=>e._id!== data._id))
       }
-
       } catch (error) {
         console.log(error);
       }
@@ -29,12 +28,10 @@ export default function ProfilePage() {
     router.push(`/updatePrompt?id=${prompt._id}`)
   };
   useEffect(() => {
-
     const fetchData = async () => {
       const respose = await fetch(`/api/users/${session?.user.id}/prompt`);
       const data = await respose.json();
       setMyPrompt(data);
-
     };
     fetchData();
   }, []);
