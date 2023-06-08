@@ -8,7 +8,7 @@ export const GET= async(req)=>{
     const allPrompt= await promptModel.find().populate('userId')
     if(allPrompt){
        
-        return new Response(JSON.stringify(allPrompt),{status:201})
+        return new Response(JSON.stringify(allPrompt),{status:200})
     }else{
         return new Response("failed to creat allPrompt",{status:400})
     }
