@@ -34,7 +34,7 @@ export default function ProfilePage() {
       setMyPrompt(data);
     };
     fetchData();
-  }, []);
+  },[session?.user.id]);
   return (
     <>
       <ProfileComponent
