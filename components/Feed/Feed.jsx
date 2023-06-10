@@ -2,6 +2,15 @@
 import "@components/Feed/feed.css";
 import {  useEffect,useReducer } from "react";
 import PromptCard from "@components/PromptCard/PromptCard";
+import useSWR from 'swr'
+import axios from "axios";
+/**---swr set */
+const fetcher = url => axios.get(url).then(res => res.data)
+
+
+
+
+
 /**set useReducer args--------start */
 const initState={
   SearchText:'',
@@ -21,7 +30,7 @@ const reducer=(state,action)=>{
 /**set useReducer args--------end */
 
 /**=========main function componant======== */
-export default function Feed({data}) {
+export default function Feed() {
   const [state,dispatch]=useReducer(reducer,initState)
   /**----handle type in search inpute----------- */
   const filterPrompts = (SearchText) => {
@@ -43,13 +52,27 @@ export default function Feed({data}) {
     dispatch({type:"newUserInput",payload:{SearchText:e,SearchValue:filterPrompts(e)}})
   };
   /**-------------- */
-  useEffect(() => {
-    if(!data){
-      console.log(data)
-    }else{
-      dispatch({type:"getPosts",payload:data})
-    }
-   },[data]);
+  // useEffect(() => {
+  //   if(!data){
+  //     console.log(data)
+  //   }else{
+  //     dispatch({type:"getPosts",payload:data})
+  //   }
+  //  },[data]);
+  const { data,error, isLoading  } = useSWR(`/api/prompt/GetAll`, fetcher)
+  if (isLoading){
+    return <>
+    <div>
+      <h1> loading data ...............</h1>
+    </div>
+    </>
+  }
+  if(error){
+    console.log(error)
+    return 
+   
+  }
+ 
   return (
     <>
       <section className="feed">
@@ -77,7 +100,7 @@ export default function Feed({data}) {
          </div>
         ) : (
           <div className="mt-16 prompt_layout">
-          {state.posts?.map((post) => {
+          {data?.map((post) => {
             return (
               <PromptCard
                 key={post._id}
