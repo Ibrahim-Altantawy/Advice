@@ -4,14 +4,10 @@ export default function Form({ type, post, setPost, submit, handleSubmit }) {
   return (
     <>
       <section className="w-full">
-        <h1 className="head_text  ">
-          <span className="blue_gradient"> {type} prompt</span>
+        <h1 className="head_text  mb-5">
+          <span className="blue_gradient"> {type} Advice</span>
         </h1>
-        <p className="desc max-w-md">
-          {" "}
-          this page to creat or update prompt (this text can change in real
-          project)
-        </p>
+        
         <form
           onSubmit={handleSubmit}
           className="mt-2 w-full max-w-2xl flex flex-col gap-7 glassmorphism  "
