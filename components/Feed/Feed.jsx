@@ -7,10 +7,6 @@ import axios from "axios";
 /**---swr set */
 const fetcher = url => axios.get(url).then(res => res.data)
 
-
-
-
-
 /**set useReducer args--------start */
 const initState={
   SearchText:'',
@@ -35,7 +31,7 @@ export default function Feed() {
   /**----handle type in search inpute----------- */
   const filterPrompts = (SearchText) => {
     const regex = new RegExp(SearchText, "i");
-    return state.posts.filter(
+    return data.filter(
       (item) =>
         regex.test(item.userId.userName) ||
         regex.test(item.tag) ||
@@ -51,15 +47,8 @@ export default function Feed() {
   const handleTaqClick = (e) => {
     dispatch({type:"newUserInput",payload:{SearchText:e,SearchValue:filterPrompts(e)}})
   };
-  /**-------------- */
-  // useEffect(() => {
-  //   if(!data){
-  //     console.log(data)
-  //   }else{
-  //     dispatch({type:"getPosts",payload:data})
-  //   }
-  //  },[data]);
-  const { data,error, isLoading  } = useSWR(`/api/prompt/GetAll`, fetcher,{ refreshInterval: 1 })
+
+  const { data,error, isLoading  } = useSWR(`/api/prompt/GetAll`, fetcher,{ refreshInterval: 1000,revalidateOnMount:true })
   if (isLoading){
     return <>
     <div>
