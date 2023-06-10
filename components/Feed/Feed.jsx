@@ -59,7 +59,7 @@ export default function Feed() {
   //     dispatch({type:"getPosts",payload:data})
   //   }
   //  },[data]);
-  const { data,error, isLoading  } = useSWR(`/api/prompt/GetAll`, fetcher)
+  const { data,error, isLoading  } = useSWR(`/api/prompt/GetAll`, fetcher,{ refreshInterval: 1 })
   if (isLoading){
     return <>
     <div>
