@@ -3,7 +3,7 @@ import NavbarComponent from "@components/Navbar/NavbarComponent.jsx";
 import AuthProvider from "@components/authProvider/AuthProvider";
 
 export const metadata = {
-  title: "share_prompt",
+  title: "Share_Advice",
   description: "Discover & Share Ai prompts",
 };
 export default function RootLayout({ children }) {
