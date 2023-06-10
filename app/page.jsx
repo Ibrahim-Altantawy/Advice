@@ -1,12 +1,12 @@
 import Feed from "@components/Feed/Feed";
+import axios from "axios";
 export default async function Home() {
   let data;
   try {
-    const response = await fetch(
-      `${process.env.NEXTAUTH_URL_INTERNAL}/api/prompt/GetAll`,
-      { cache: "no-store" }
-    );
-    data = await response.json();
+    const response = await axios.get(
+      `${process.env.NEXTAUTH_URL_INTERNAL}/api/prompt/GetAll`);
+
+    data =response.data 
   } catch (error) {
     console.log(error);
   }
