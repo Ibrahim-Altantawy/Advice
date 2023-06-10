@@ -18,7 +18,7 @@ export default function NavbarComponent() {
         className="rounded-full mr-3"
         alt="logo image"
         />
-        <p className="logo_text orange_gradient">Prompt</p>
+        <p className="logo_text orange_gradient">Advice</p>
         </Link>
         {/**mobil navigation */}
        <LoginNavbar/>
