@@ -2,14 +2,14 @@ import dbConnection from "@database/dbConeection/dbConnection";
 import userModel from "@database/models/user.model";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-
-const handler = NextAuth({
+export const authOptions={
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+  secret:process.env.NEXTAUTH_SECRET,
   callbacks:{
     async session({ session }) {
         const sessionUser = await userModel.findOne({ email: session.user.email });
@@ -36,9 +36,10 @@ const handler = NextAuth({
           console.log(error);
         }
       },
-
+      
   }
   
-});
+}
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

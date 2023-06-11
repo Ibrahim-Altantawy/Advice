@@ -1,5 +1,5 @@
 import Feed from "@components/Feed/Feed";
-
+export const fetchCache = 'force-no-store'
 export default async function Home() {
   return (
     <>

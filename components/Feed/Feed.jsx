@@ -60,6 +60,13 @@ export default function Feed() {
     console.log(error)
     return 
    
+  } if(data.length<=0){
+    return <>
+    <div>
+      <h1 className="orange_gradient font-satoshi font-semibold mt-10 curisor-pointer"> There is not any advice yet ...be first one share his experience</h1>
+     </div>
+    </>
+   
   }
  
   return (
@@ -75,7 +82,7 @@ export default function Feed() {
             onChange={handleSearchChange}
           />
         </form>
-        {state.SearchText ? (
+       {state.SearchText ? (
            <div className="mt-16 prompt_layout">
            {state.SearchValue.map((post) => {
              return (
