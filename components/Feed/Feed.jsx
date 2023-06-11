@@ -1,6 +1,6 @@
 "use client";
 import "@components/Feed/feed.css";
-import {  useEffect,useReducer } from "react";
+import {  useReducer } from "react";
 import PromptCard from "@components/PromptCard/PromptCard";
 import useSWR from 'swr'
 import axios from "axios";

@@ -8,7 +8,7 @@ export default function ProfileComponent({name,data,desc,handleEdit,handleDelet 
       </h1>
     <p className='desc text-left'>{desc}</p>
       <div className=' mt-10 prompt_layout'>
-      {data.map((post)=>{
+      {data?.map((post)=>{
       return <PromptCard
       key={post._id}
       post={post} 

@@ -1,23 +1,33 @@
 "use client";
-import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ProfileComponent from "@components/Profile/ProfileComponent.jsx";
+import  useSWR  from 'swr';
+import axios from "axios";
+const fetcher = url => axios.get(url).then(res => res.data)
 export default function ProfilePage() {
   const router=useRouter()
-  const [myPrompt, setMyPrompt] = useState([]);
+  // const [myPrompt, setMyPrompt] = useState([]);
   const { data: session } = useSession();
-  if(!session){
+
+  const { data,error, isLoading,mutate   } = useSWR(`/api/users/${session?.user.id}/prompt`, fetcher,{ refreshInterval: 1000 })
+  if (isLoading){
+    return <>
+    <div>
+      <h1> loading data ...............</h1>
+    </div>
+    </>
+  }
+  if(error){
    
-  
-    return (
-     <>
-      <div>
-       <h1 className="orange_gradient font-satoshi font-semibold"> oops!!....  Sorry you should signIn our site to have you own profile page</h1>
-      </div>
-     </>
-   );
-   }else{
+     console.log(error)
+     return
+   
+    
+  }
+
+
+
     const handleDelet =async (prompt) => {
       const hasConfirmed= confirm('are you sure want delet prompt?')
       if(hasConfirmed){
@@ -25,10 +35,10 @@ export default function ProfilePage() {
           const response = await fetch(`/api/prompt/${prompt._id}`,{
             method:"DELETE"
           })
-         const data =await response.json()
+         const deletedPrompt =await response.json()
           if(response.ok){
             alert('deleting sucesses')
-            setMyPrompt(myPrompt.filter((e)=>e._id!== data._id))
+            mutate (data.filter((e)=>e._id!== deletedPrompt._id))
         }
         } catch (error) {
           console.log(error);
@@ -38,24 +48,17 @@ export default function ProfilePage() {
     const handleEdit = (prompt) => {
       router.push(`/updatePrompt?id=${prompt._id}`)
     };
-    useEffect(() => {
-      const fetchData = async () => {
-        const respose = await fetch(`/api/users/${session?.user.id}/prompt`);
-        const data = await respose.json();
-        setMyPrompt(data);
-      };
-      fetchData();
-    },[session?.user.id]);
+    
     return (
       <>
         <ProfileComponent
           name="My"
           desc="welcome to your profile"
-          data={myPrompt}
+          data={data}
           handleEdit={handleEdit}
           handleDelet={handleDelet}
         />
       </>
     );
-   }
+   
 }
